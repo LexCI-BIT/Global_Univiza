@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Details – Global Univiza</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nav-wrapper { animation: none !important; }
+    #service-hero {
+      position: relative;
+      padding: 180px 6% 120px;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      border-radius: 0 0 40px 40px;
+      overflow: hidden;
+    }
+    #service-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(4, 47, 23, 0.9) 0%, rgba(4, 47, 23, 0.4) 100%);
+    }
+    .sh-content { position: relative; z-index: 2; max-width: 800px; }
+    .sh-icon {
+      width: 64px; height: 64px;
+      background: var(--orange);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; color: white;
+    }
+    .sh-icon svg { width: 32px; height: 32px; }
+    .sh-content h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      margin-bottom: 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .sh-content p { font-size: 20px; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 640px; }
+    #service-body { padding: 80px 6% 120px; background: white; }
+    .sb-grid {
+      display: grid; grid-template-columns: 1fr 380px; gap: 60px;
+      max-width: 1200px; margin: 0 auto; align-items: start;
+    }
+    .sb-main h2 { font-size: 32px; margin-bottom: 20px; }
+    .sb-main p { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+    .sb-benefits { list-style: none; margin-top: 40px; }
+    .sb-benefits li {
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
+      font-size: 16px; color: var(--text); background: var(--off);
+      padding: 20px 24px; border-radius: 16px; font-weight: 500;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .sb-benefits li svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+    .sb-sidebar {
+      background: white; border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 24px; padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+      height: fit-content; position: sticky; top: 100px;
+    }
+    .sb-sidebar h3 { font-size: 28px; font-family: 'Cormorant Garamond', serif; font-weight: 700; margin-bottom: 12px; }
+    @media (max-width: 960px) {
+      .sb-grid { grid-template-columns: 1fr; }
+      .sb-sidebar { position: relative; top: 0; margin-top: 20px; }
+    }
+  </style>
+  <script src="service-data.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo_without_text.png" alt="Global Univiza Logo" style="height: 38px; width: auto; object-fit: contain;">
+        <span class="nav-logo-name">Global Univiza</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#why">About Us</a>
+        <a href="index.html#services" class="active">Services</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+      <a href="book-appointment.html" class="nav-cta">Get an Appointment</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section id="service-hero">
+    <div class="sh-content">
+      <div class="sh-icon" id="hero-icon"></div>
+      <h1 id="hero-title"></h1>
+      <p id="hero-desc"></p>
+    </div>
+  </section>
+
+  <script>
+    // IMMEDIATE HERO POPULATION (Executes as soon as hero DOM is parsed)
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const serviceId = params.get('id');
+      const data = serviceData[serviceId];
+      if(data) {
+        document.title = data.title + " – Global Univiza";
+        document.getElementById('service-hero').style.backgroundImage = `url('${data.image}')`;
+        document.getElementById('hero-title').innerText = data.title;
+        document.getElementById('hero-desc').innerText = data.shortDesc;
+        document.getElementById('hero-icon').innerHTML = data.icon;
+      }
+    })();
+  </script>
+
+  <!-- BODY -->
+  <section id="service-body">
+    <div class="sb-grid">
+      <div class="sb-main">
+        <h2>Overview</h2>
+        <p id="main-desc"></p>
+        <ul class="sb-benefits" id="benefits-list"></ul>
+      </div>
+      <div class="sb-sidebar">
+        <h3>Ready to start?</h3>
+        <p style="color:var(--muted); font-size:15px; margin-bottom:24px; line-height:1.6;">Speak to our experts today and get free customized guidance for your profile.</p>
+        <a href="index.html#contact" class="btn-orange" style="display:block; text-align:center; padding:18px;">Book Free Counselling →</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // SECONDARY BODY POPULATION
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const serviceId = params.get('id');
+      const data = serviceData[serviceId];
+      if(data) {
+        document.getElementById('main-desc').innerText = data.description;
+        const bList = document.getElementById('benefits-list');
+        if(bList) {
+          bList.innerHTML = '';
+          data.benefits.forEach(b => {
+            bList.innerHTML += `<li><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span>${b}</span></li>`;
+          });
+        }
+      }
+    })();
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft">
+      <div class="fbrand">
+        <div class="fbl" style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+          <div style="background: white; width: 62px; height: 62px; border-radius: 18px; display: flex; align-items: center; justify-content: center; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <img src="assets/logo_without_text.png" alt="Global Univiza Logo" style="height: 100%; width: auto; object-fit: contain;">
+          </div>
+          <div>
+            <div class="fbl-name" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: white; line-height: 1.1; margin-bottom: 6px;">Global Univiza</div>
+            <div class="fbl-sub" style="font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(255, 255, 255, 0.55);">Educational Consultancy</div>
+          </div>
+        </div>
+        <p>Hyderabad's trusted partner for international education. We turn study abroad dreams into reality — with expert guidance, zero fees, and 100% commitment.</p>
+      </div>
+      <div class="fcol">
+        <h4>Services</h4>
+        <a href="service-details.html?id=test-preparation">Test Preparation</a><a href="service-details.html?id=admission-counselling">Admission Counselling</a>
+        <a href="service-details.html?id=visa-guidance">Visa Guidance</a><a href="service-details.html?id=education-loans">Education Loans</a>
+        <a href="service-details.html?id=travel-assistance">Travel Assistance</a><a href="service-details.html?id=accommodation">Accommodation</a>
+      </div>
+      <div class="fcol">
+        <h4>Destinations</h4>
+        <a href="index.html#countries">US United States</a><a href="index.html#countries">UK United Kingdom</a>
+        <a href="index.html#countries">CA Canada</a><a href="index.html#countries">AU Australia</a>
+        <a href="index.html#countries">IR Ireland</a><a href="index.html#countries">GE Germany</a>
+      </div>
+    </div>
+    <div class="fb">
+      <p>© 2025 Global Univiza Educational Consultancy · Hyderabad, India · All rights reserved.</p>
+      <div class="fsocs">
+        <a href="https://www.instagram.com/globaluniviza" target="_blank" class="fsoc">📸</a>
+        <a href="https://wa.me/919319515113" target="_blank" class="fsoc">💬</a>
+        <a href="mailto:globaluniviza@gmail.com" class="fsoc">✉️</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
