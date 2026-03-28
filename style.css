@@ -380,6 +380,16 @@
     }
 
     /* SECTIONS */
+    /* SERVICE IMAGES */
+    .sc.s1 { background-image: url('assets/s1.png'); }
+    .sc.s2 { background-image: url('assets/s2.png'); }
+    .sc.s3 { background-image: url('assets/s3.png'); }
+    .sc.s4 { background-image: url('assets/s4.png'); }
+    .sc.s5 { background-image: url('assets/s5.png'); }
+    .sc.s6 { background-image: url('assets/s6.png'); }
+    .sc.s7 { background-image: url('assets/s7.png'); }
+    .sc.s8 { background-image: url('assets/s8.png'); }
+
     section {
       padding: 100px 6%;
     }
