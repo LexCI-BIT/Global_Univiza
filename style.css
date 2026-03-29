@@ -627,6 +627,7 @@
     }
 
     .sc {
+      text-decoration: none;
       border-radius: var(--radius);
       background-size: cover;
       background-position: center;
