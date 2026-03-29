@@ -89,7 +89,22 @@
         <a href="index.html#contact">Contact Us</a>
       </div>
       <a href="book-appointment.html" class="nav-cta">Get an Appointment</a>
+      <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#why">About Us</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+      <a href="book-appointment.html" class="btn-orange mobile-cta" style="display:block; text-align:center;">Get an Appointment</a>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -189,5 +204,27 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-links a');
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
