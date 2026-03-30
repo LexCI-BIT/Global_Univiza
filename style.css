@@ -1605,22 +1605,30 @@
       }
 
       .hero-rings {
-        top: 160px;
+        top: 320px;
         right: 50%;
         transform: translate(50%, -50%);
-        width: 320px;
-        height: 320px;
-        opacity: 0.12;
+        width: 600px;
+        height: 600px;
+        opacity: 0.15;
         z-index: 1;
       }
 
       .globe-container {
-        top: 160px;
+        top: 380px; /* Centered behind main text block on mobile */
         right: 50%;
-        transform: translate(50%, -50%) scale(0.4);
+        transform: translate(50%, -50%);
+        width: 120vw; /* Using viewport width for better background coverage */
+        height: 120vw;
+        max-width: 500px;
+        max-height: 500px;
         z-index: 1;
-        opacity: 0.3;
+        opacity: 0.8;
         pointer-events: none;
+      }
+
+      #chartdiv a {
+        display: none !important;
       }
 
       #home {
