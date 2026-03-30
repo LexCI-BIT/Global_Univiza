@@ -26,8 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const oceanGrad = defs.append('radialGradient')
     .attr('id', 'ocean-grad')
     .attr('cx', '40%').attr('cy', '40%');
-  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1e90ff'); // Dodger Blue
-  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#004a8d'); // Deep Blue
+  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1e90ff');
+  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#004a8d');
+
+  // Realistic Sphere Shading (Depth Layer)
+  const sphereShading = defs.append('radialGradient')
+    .attr('id', 'sphere-shading')
+    .attr('cx', '40%').attr('cy', '40%');
+  sphereShading.append('stop').attr('offset', '40%').attr('stop-color', 'rgba(255,255,255,0.15)'); // Light highlight
+  sphereShading.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(0,0,0,0.4)'); // Deep shadow at edges
 
   // Land Material
   const landGrad = defs.append('linearGradient')
@@ -42,6 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .attr('cy', height / 2)
     .attr('r', projection.scale())
     .attr('fill', 'url(#ocean-grad)');
+    
+  // 3D Highlight Layer
+  svg.append('circle')
+    .attr('cx', width / 2)
+    .attr('cy', height / 2)
+    .attr('r', projection.scale())
+    .attr('fill', 'url(#sphere-shading)')
+    .style('pointer-events', 'none');
 
   // 5. Fetch and Render Map (Using a reliable public GeoJSON)
   d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(worldData => {

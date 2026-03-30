@@ -1632,8 +1632,8 @@
         z-index: 1;
         opacity: 0.25 !important; /* Visible but elegantly transparent */
         pointer-events: none;
-        background: none !important;
-        filter: none !important;
+        background: radial-gradient(circle at 40% 40%, rgba(30, 144, 255, 0.2) 0%, transparent 75%) !important;
+        filter: drop-shadow(0 0 30px rgba(69, 160, 255, 0.4)) !important;
         box-shadow: none !important;
       }
 
