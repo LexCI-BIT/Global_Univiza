@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const landGrad = defs.append('linearGradient')
     .attr('id', 'land-grad')
     .attr('x1', '0%').attr('y1', '0%').attr('x2', '100%').attr('y2', '100%');
-  landGrad.append('stop').attr('offset', '0%').attr('stop-color', '#3d7a4f');
-  landGrad.append('stop').attr('offset', '100%').attr('stop-color', '#1a4d2e');
+  landGrad.append('stop').attr('offset', '0%').attr('stop-color', '#44B074');
+  landGrad.append('stop').attr('offset', '100%').attr('stop-color', '#1B8B4E');
 
   // 4. Background Sphere (Water)
   svg.append('circle')

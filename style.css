@@ -1,8 +1,8 @@
 :root {
-      --green: #0B5C30;
-      --green-dark: #042F17;
-      --green-mid: #0E7A40;
-      --green-light: #E8F5EF;
+      --green: #23A45C;
+      --green-dark: #1B8B4E;
+      --green-mid: #2DBE6E;
+      --green-light: #F0FAF5;
       --orange: #F25C05;
       --orange-dark: #D14D02;
       --gold: #D4AF37;
@@ -470,7 +470,7 @@
 
     .reason:hover {
       border-color: var(--green);
-      box-shadow: 0 16px 48px rgba(11, 92, 48, 0.08);
+      box-shadow: 0 16px 48px rgba(27, 139, 78, 0.08);
       transform: translateX(8px);
     }
 
@@ -827,7 +827,7 @@
 
     .cc:hover {
       border-color: var(--green);
-      box-shadow: 0 24px 64px rgba(11, 92, 48, 0.15);
+      box-shadow: 0 24px 64px rgba(27, 139, 78, 0.15);
       transform: translateY(-8px);
     }
 
@@ -1080,7 +1080,7 @@
 
     .citem:hover {
       border-color: var(--green);
-      box-shadow: 0 16px 48px rgba(11, 92, 48, 0.08);
+      box-shadow: 0 16px 48px rgba(27, 139, 78, 0.08);
       transform: translateY(-2px);
     }
 
@@ -1176,7 +1176,7 @@
     .fg textarea:focus {
       border-color: var(--green);
       background: white;
-      box-shadow: 0 8px 24px rgba(11, 92, 48, 0.08), 0 0 0 4px rgba(11, 92, 48, 0.05);
+      box-shadow: 0 8px 24px rgba(27, 139, 78, 0.08), 0 0 0 4px rgba(27, 139, 78, 0.05);
       transform: translateY(-2px);
     }
 
