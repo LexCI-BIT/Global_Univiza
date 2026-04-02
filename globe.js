@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = d3.select('#chartdiv');
   const width = 320;
   const height = 320;
-  
+
   // 1. Create SVG
   const svg = container.append('svg')
     .attr('width', width)
@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Define Gradients (Luxury Realistic Shading)
   const defs = svg.append('defs');
-  
+
   // Ocean Gradient (Vibrant Realistic Blue)
   const oceanGrad = defs.append('radialGradient')
     .attr('id', 'ocean-grad')
     .attr('cx', '40%').attr('cy', '40%');
-  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1e90ff');
-  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#004a8d');
+  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#E3F2FD'); // Very light blue
+  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#90CAF9'); // Soft blue
 
   // Realistic Sphere Shading (Depth Layer)
   const sphereShading = defs.append('radialGradient')
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .attr('id', 'land-grad')
     .attr('x1', '0%').attr('y1', '0%').attr('x2', '100%').attr('y2', '100%');
   landGrad.append('stop').attr('offset', '0%').attr('stop-color', '#44B074');
-  landGrad.append('stop').attr('offset', '100%').attr('stop-color', '#1B8B4E');
+  landGrad.append('stop').attr('offset', '100%').attr('stop-color', '#1B8B4E'); // Professional Green
 
   // 4. Background Sphere (Water)
   svg.append('circle')
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .attr('cy', height / 2)
     .attr('r', projection.scale())
     .attr('fill', 'url(#ocean-grad)');
-    
+
   // 3D Highlight Layer
   svg.append('circle')
     .attr('cx', width / 2)
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Fetch and Render Map (Using a reliable public GeoJSON)
   d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(worldData => {
     const countries = topojson.feature(worldData, worldData.objects.countries).features;
-    
+
     // Grid Lines (Sophisticated Map Look)
     const graticule = svg.append('path')
       .datum(d3.geoGraticule())
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     d3.timer(() => {
       rotation += 0.45;
       projection.rotate([rotation, -15]);
-      
+
       // Update all layers
       svg.selectAll('path').attr('d', path);
     });
