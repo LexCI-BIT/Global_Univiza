@@ -41,6 +41,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 800;
       line-height: 1.1;
+      animation: fadeUp 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
     .sh-content p { font-size: 20px; line-height: 1.6; color: rgba(255, 255, 255, 0.85); max-width: 640px; }
     #service-body { padding: 80px 6% 120px; background: white; }
@@ -108,8 +109,8 @@
   </div>
 
   <!-- HERO -->
-  <section id="service-hero">
-    <div class="sh-content">
+  <section id="service-hero" class="reveal">
+    <div class="sh-content reveal delay-1">
       <div class="sh-icon" id="hero-icon"></div>
       <h1 id="hero-title"></h1>
       <p id="hero-desc"></p>
@@ -133,7 +134,7 @@
   </script>
 
   <!-- BODY -->
-  <section id="service-body">
+  <section id="service-body" class="reveal">
     <div class="sb-grid">
       <div class="sb-main">
         <h2>Overview</h2>
@@ -159,13 +160,17 @@
         const bList = document.getElementById('benefits-list');
         if(bList) {
           bList.innerHTML = '';
-          data.benefits.forEach(b => {
-            bList.innerHTML += `<li><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span>${b}</span></li>`;
+          data.benefits.forEach((b, index) => {
+            const delayClass = `delay-${(index % 5) + 1}`;
+            bList.innerHTML += `<li class="reveal ${delayClass}"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span>${b}</span></li>`;
           });
         }
       }
     })();
   </script>
+
+  <script src="animations.js"></script>
+
 
   <!-- FOOTER -->
   <footer>
